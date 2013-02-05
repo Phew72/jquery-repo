@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>jQuery Tutorial - Lesson 7</title>
+    
+    <style>
+    article {
+        width: 600px;
+        margin: auto;
+    }
+    
+    blockquote.co {
+        float: right;
+        background: #e3e3e3;
+        font-size: 2em;
+        width: 35%;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Appending Content</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+        </p>
+        <p>
+            <span class=co>Lorem ipsum dolor sit amet</span>, consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+            consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc <span class=co>Callouts are cool</span> euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod tellus auctor elit pellentesque ullamcorper. Proin vitae fermentum augue.
+        </p>
+    </article>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    
+    <script>
+    
+    (function() {
+        
+        // Creating and appending a <h2> tag
+//        $('<h2></h2>', {
+//            text: 'Hello from the javascript',
+//            class: 'myClass'
+//        }).insertAfter('h1');
+        
+        // Move (not just append) <h1>
+        //$('h1').appendTo('article');
+        //$('p').after( $('h1') );
+        //$('p').eq(0).after( $('h1') );
+        
+        // Alternatively, to that above...
+//        $('p').eq(0).after(function() {
+//            return $(this).prev();
+//        })
+
+        $('article')
+            .find('span.co').each(function() {
+                var $this = $(this);
+            
+                $('<blockquote></blockquote>', {
+                    class: 'co',
+                    text: $this.text()
+                }).prependTo($this.closest('p') );
+            
+        });
+    })();
+    
+    </script>
+</body>
+</html>

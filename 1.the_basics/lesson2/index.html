@@ -1,0 +1,26 @@
+<html>
+<head>
+   <title>jQuery Tutorial - Lesson 2</title>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+   
+   <style>
+      .emphasis { font-weight: bold; }
+   </style>
+   
+   <script>
+//      $(document).ready(function() {  --- Shorthand version for DOM ready checking below ---
+      $(function() {
+         $('li:first-child').addClass('emphasis');
+      });
+   </script>
+</head>
+
+<body>
+   <ul>
+      <li>hello</li>
+      <li>hello 2</li>
+      <li>hello 3</li>
+   </ul>
+
+</body>
+</html>

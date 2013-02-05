@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>jQuery Tutorial - Lesson 6</title>
+    
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Bind...Live...Delegate... Wot?</h1>
+    
+    <h2>Click Me!</h2>
+    <h2>Click Me!</h2>
+    <h2>Click Me!</h2>
+    <h2>Click Me!</h2>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    
+    <script>
+    
+    // self-invoking anonomous function
+    (function() {
+        
+        $('h2').on('click', function() {
+            console.log('clicked');
+            $(this).clone(true).appendTo('.container');
+        });
+        
+    })();
+
+    </script>
+</body>
+</html>
