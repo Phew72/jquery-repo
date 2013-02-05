@@ -5,18 +5,146 @@
     <title>jQuery Tutorial - Effects - Lesson 1</title>
     
     <style>
+    body {
+        width: 600px;
+        margin: auto;
+        font-family: sans-serif;
+    }
+    
+    #contact {
+        background: #e3e3e3;
+        padding: 1em 2em;
+        position: relative;
+    }
+    
+    .js #contact {
+        position: absolute;
+        top: 0;
+        width: inherit;
+        display: none;
+    }
+    
+    #contact h2 { margin-top: 0; }
+    
+    #contact ul { padding: 0; }
+    
+    #contact li {
+        list-style: none;
+        margin-bottom: 1em;
+    }
+    
+    /* Close button on form */
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-weight: bold;
+        font-family: sans-serif;
+        cursor: pointer;
+    }
+    
+    /* Form inputs */
+    input, textarea { width: 100%; line-height: 2em; }
+    input[type=submit] { width: auto; }
+    label { display: block; text-align: left; }
+    
     </style>
 </head>
 <body>
     <h1>Slides and Structure</h1>
+
+    <article>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra, leo at sagittis elementum, quam augue accumsan sapien, nec congue dolor mauris id nisi. In faucibus, sapien sodales imperdiet fermentum, mi justo porta sem, sed lobortis massa erat sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi quis ullamcorper felis. Phasellus adipiscing cursus urna, vitae consequat tellus ultrices ut. Morbi ultricies fermentum congue. Vestibulum vulputate porttitor erat nec varius. Phasellus adipiscing enim blandit ligula pharetra molestie. Morbi facilisis lobortis blandit. Fusce euismod mi eget lectus facilisis nec volutpat erat ultrices. Proin eget mi at mauris fringilla pretium in ac ipsum. Nam eu tempor ante. Nulla id nisi tortor.
+        </p>
+        <p>
+        Suspendisse potenti. Duis tempus elit at felis sagittis placerat non vulputate erat. In ut turpis ligula. Vestibulum consectetur volutpat magna, ornare feugiat massa tempor ac. Morbi tristique malesuada cursus. Cras interdum tincidunt massa ac placerat. Phasellus nulla dui, viverra id commodo eget, lobortis ac ipsum. Quisque ut dolor in velit sollicitudin porta. Suspendisse lobortis consequat odio, eu lacinia dolor condimentum non. Duis venenatis velit at turpis scelerisque quis sagittis nibh sagittis. Mauris ut tellus a augue placerat semper fermentum sit amet velit. Sed velit nibh, mollis ac molestie at, tempor quis enim.
+        </p>
+        <p>
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ultricies purus ut turpis pretium id dignissim mi laoreet. Integer malesuada tristique urna lobortis pellentesque. Fusce vitae nisl in eros porttitor auctor id nec purus. Etiam sit amet elit et nulla fringilla ultricies. Integer ligula ipsum, vehicula non tincidunt eu, dignissim at augue. Etiam bibendum, turpis ac interdum venenatis, arcu nisi dignissim lectus, et tincidunt justo elit vitae leo.
+        </p>
+    </article>
     
+    <div id="contact">
+        <h2>Contact Me</h2>
+        <form action="#">
+            <ul>
+                <li>
+                    <label for="name">Name: </label>
+                    <input name="name" id="name" />
+                </li>
+                <li>
+                    <label for="email">Email address: </label>
+                    <input name="email" id="email" />
+                </li>
+                <li>
+                    <label for="comments">Comments: </label>
+                    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+                </li>
+                <li>
+                    <input type="submit" value="Submit" />
+                </li>
+            </ul>
+        </form>
+    </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
     
     <script>
 
     (function() {
         
-        // write js code here...
+        $('html').addClass('js');
+        
+        var contactForm = {
+            container: $('#contact'),
+            
+            config: {
+                effect: 'slideToggle',
+                speed: 300
+            },
+            
+            init: function(config) {
+//                console.log(config);
+                $.extend(this.config, config);
+                
+                $('<button></button>', {
+                    text: 'Contact Me'
+                })
+                    .insertAfter('article:first')
+                    .on('click', this.show);
+            },
+            
+            show: function() {
+                var cf = contactForm,
+                    container = cf.container,
+                    config = cf.config;
+                
+                if ( container.is(':hidden') ) {
+                    contactForm.close.call(container);
+                    container[config.effect](config.speed);
+                }
+            },
+            
+            close: function() {
+                // this = #contact
+                var $this = $(this);
+                
+                // If the close button has already been created, don't do it again.
+                if ( $this.find('span.close').length ) return;
+                
+                $('<span class=close>X</span>')
+                    .prependTo(this)
+                    .on('click', function() {
+                        // this = span
+                        $this[contactForm.config.effect](contactForm.config.speed);
+                    });
+            }
+        };
+        
+        contactForm.init({
+            effect: 'fadeToggle',
+            speed: 300
+        });
         
     })();
     
