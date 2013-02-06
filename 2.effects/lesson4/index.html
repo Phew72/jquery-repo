@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>jQuery Tutorial - Lesson 4</title>
+    
+    <style>
+    p { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <h1>Creating Custom Effect Methods</h1>
+    
+    <h2>Click Me</h2>
+    <div class="content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra, leo at sagittis elementum, quam augue accumsan sapien, nec congue dolor mauris id nisi. In faucibus, sapien sodales imperdiet fermentum, mi justo porta sem, sed lobortis massa erat sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi quis ullamcorper felis. Phasellus adipiscing cursus urna, vitae consequat tellus ultrices ut. Morbi ultricies fermentum congue. Vestibulum vulputate porttitor erat nec varius. Phasellus adipiscing enim blandit ligula pharetra molestie. Morbi facilisis lobortis blandit. Fusce euismod mi eget lectus facilisis nec volutpat erat ultrices. Proin eget mi at mauris fringilla pretium in ac ipsum. Nam eu tempor ante. Nulla id nisi tortor.
+        </p>
+        <p>
+            Suspendisse potenti. Duis tempus elit at felis sagittis placerat non vulputate erat. In ut turpis ligula. Vestibulum consectetur volutpat magna, ornare feugiat massa tempor ac. Morbi tristique malesuada cursus. Cras interdum tincidunt massa ac placerat. Phasellus nulla dui, viverra id commodo eget, lobortis ac ipsum. Quisque ut dolor in velit sollicitudin porta. Suspendisse lobortis consequat odio, eu lacinia dolor condimentum non. Duis venenatis velit at turpis scelerisque quis sagittis nibh sagittis. Mauris ut tellus a augue placerat semper fermentum sit amet velit. Sed velit nibh, mollis ac molestie at, tempor quis enim.
+        </p>
+    </div>
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    <script>
+
+    (function() {
+        var content = $('div.content').hide();
+        
+        jQuery.fn.flash = function( speed, easing, callback ) {
+            var $this = $(this);
+            return $this.slideDown(500, function() {
+                $this.delay(2000).slideUp(500);
+            });
+            //return this.animate( props, speed, easing, callback );
+        };
+        
+        $('h2').on('click', function() {
+            content.flash();
+        });
+        
+    })();
+    
+    </script>
+</body>
+</html>
