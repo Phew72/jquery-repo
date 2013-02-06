@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>jQuery Tutorial - Lesson 6</title>
+    
+    <style>
+    body { width: 400px; margin: 100px auto; }
+    
+    .box {
+        width: 400px;
+        background: red;
+        position: relative;
+        overflow: hidden;
+        /*padding: 1em;*/
+        border: 1px solid black;
+    }
+    </style>
+</head>
+<body>
+    <h1>Homework Solutions</h1>
+    
+    <div class="box">
+        <h2>Animate</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra, leo at sagittis elementum, quam augue accumsan sapien, nec congue dolor mauris id nisi.
+        </p>
+    </div>
+    
+    <p>
+        <button>FadeSlideToggle</button>
+    </p>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    
+    <script>
+
+    (function() {
+        var box = $('div.box');
+        
+        $.fn.fadeSlideToggle = function(speed, fn) {
+            // fadeToggle: opacity
+            // slideToggle: height
+            return $(this).animate({
+                height: 'toggle',
+                opacity: 'toggle'
+            }, speed || 400, function() {
+                $.isFunction(fn) && fn.call(this);
+            });
+        };
+        
+        $('button').on('click', function() {
+            box.fadeSlideToggle(1000, function() {
+                console.log('fadeSlideToggle finished');
+            });
+        });
+        
+    })();
+    
+    </script>
+</body>
+</html>
