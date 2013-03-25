@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>jQuery Tutorial - Lesson 9</title>
+
+</head>
+<body>
+
+    <script id='blogTemplate' type='blog/template'>
+        <h2> {{title}} </h2>
+        <img src={{thumbnail}} alt={{title}} />
+    </script>
+    
+    <h1>$.each Example</h1>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    
+    <script>
+
+    (function() {
+        
+        var content = [
+                {
+                    title: 'The first post',
+                    thumbnail: './images/num1.png'
+                },
+                {
+                    title: 'The second post',
+                    thumbnail: './images/num2.png'
+                },
+                {
+                    title: 'The final post',
+                    thumbnail: './images/num3.png'
+                }
+            ],
+            template = $.trim( $('#blogTemplate').html() ),
+            frag = '';
+            
+        $.each ( content, function( index, obj ) {
+            var temp =
+                template.replace( /{{title}}/ig, obj.title )
+                        .replace( /{{thumbnail}}/ig, obj.thumbnail )
+            
+            frag += temp;
+            console.log(frag);
+        });
+        
+        
+        $(document.body).append(frag);
+        
+    })();
+    
+    </script>
+</body>
+</html>
